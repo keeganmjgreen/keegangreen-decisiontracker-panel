@@ -1,0 +1,34 @@
+.expressions-grid {
+    display: grid;
+    grid-template-columns: max-content max-content;
+    column-gap: 10px;
+}
+
+.left-column {
+    display: flex;
+    justify-content: center;
+    opacity: 0.5;
+}
+
+.expand-collapse-button {
+    border: none;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    font-weight: bold;
+    font-size: 50%;
+}
+
+.expression {
+    font-family: monospace;
+}
+
+.because {
+    font-size: small;
+    opacity: 50%;
+}
+
+.operator {
+    font-size: small;
+    opacity: 50%;
+}

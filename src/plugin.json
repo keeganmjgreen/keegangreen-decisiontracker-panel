@@ -4,10 +4,12 @@
   "name": "DecisionTracker",
   "id": "keegangreen-decisiontracker-panel",
   "info": {
-    "keywords": ["panel"],
-    "description": "",
+    "keywords": [
+      "panel"
+    ],
+    "description": "Grafana panel frontend for the DecisionTracker library.",
     "author": {
-      "name": "Keegan green"
+      "name": "Keegan Green"
     },
     "logos": {
       "small": "img/logo.svg",
