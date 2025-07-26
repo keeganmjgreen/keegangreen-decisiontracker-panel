@@ -26,18 +26,17 @@ const ExpressionComponent: React.FC<ExpressionComponentProps> = (props): React.J
 
   let rows = []
   if (childrenVisible) {
-    const indent = <div className="left-column">|</div>
     const children = props.evaluatedExpression.children
     if (children.length > 0) {
-      rows.push(<>{indent}<div className='because'>because</div></>)
+      rows.push(<div key={rows.length} className='left-column'>|</div>)
+      rows.push(<div key={rows.length} className='because'>because</div>)
     }
     for (let i = 0; i < children.length; i++) {
       const child = children[i]
-      rows.push(<ExpressionComponent evaluatedExpression={child} />)
+      rows.push(<ExpressionComponent key={rows.length} evaluatedExpression={child} />)
       if (i < children.length - 1) {
-        rows.push(
-          <>{indent}<div className='operator'>{props.evaluatedExpression.operator}</div></>
-        )
+        rows.push(<div key={rows.length} className='left-column'>|</div>)
+        rows.push(<div key={rows.length} className='operator'>{props.evaluatedExpression.operator}</div>)
       }
     }
   }
