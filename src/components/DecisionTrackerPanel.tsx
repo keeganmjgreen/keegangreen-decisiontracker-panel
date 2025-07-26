@@ -3,19 +3,19 @@ import { UUID } from 'crypto'
 import React, { useState } from 'react'
 import './styles.css'
 
-class EvaluatedExpression {
+export class EvaluatedExpression {
   id: UUID
   name: string | null
   value: any
   operator: string | null
   children: EvaluatedExpression[]
 
-  constructor(id: UUID, name: string | null, value: any, operator: string | null) {
+  constructor(id: UUID, name: string | null, value: any, operator: string | null, children: EvaluatedExpression[]) {
     this.id = id
     this.name = name
     this.value = value
     this.operator = operator
-    this.children = []
+    this.children = children
   }
 }
 
@@ -57,6 +57,7 @@ const ExpressionComponent: React.FC<ExpressionComponentProps> = (props): React.J
             )
           }
         }
+        data-testid={`${props.evaluatedExpression.id} button`}
       >●</button>
       <div className='expression'>
         {`${props.evaluatedExpression.name} := ${props.evaluatedExpression.value}`}
@@ -67,11 +68,10 @@ const ExpressionComponent: React.FC<ExpressionComponentProps> = (props): React.J
   )
 }
 
-export const DecisionTrackerPanel: React.FC<PanelProps> = ({ data }) => {
-  const frame = data.series[0]
-  const rows = new DataFrameView(frame).toArray()
+export const GetRootEvaluatedExpressions = (view: DataFrameView) => {
+  const rows = view.toArray()
   const evaluatedExpressions = rows.map(
-    row => new EvaluatedExpression(row.id, row.name, row.value, row.operator)
+    row => new EvaluatedExpression(row.id, row.name, row.value, row.operator, [])
   )
   const evaluatedExpressionsMap = new Map(evaluatedExpressions.map(ee => [ee.id, ee]))
   rows.forEach(
@@ -81,9 +81,23 @@ export const DecisionTrackerPanel: React.FC<PanelProps> = ({ data }) => {
       )
     }
   )
-  const rootEvaluatedExpressions = rows.filter(row => row.parent_id === null).map(
+  return rows.filter(row => row.parent_id === null).map(
     row => evaluatedExpressionsMap.get(row.id)!
   )
+}
+
+export const DecisionTrackerPanel: React.FC<PanelProps> = ({ data }) => {
+  if (data.series.length === 0) {
+    return <div>No data</div>
+  }
+  const frame = data.series[0]
+  const fields = frame.fields.map(f => f.name)
+  const req_fields = ['id', 'parent_id', 'name', 'value', 'operator']
+  const missing_fields = req_fields.filter(f => !fields.includes(f))
+  if (missing_fields.length > 0) {
+    return <div>Missing required field(s): {missing_fields.join(', ')}</div>
+  }
+  const rootEvaluatedExpressions = GetRootEvaluatedExpressions(new DataFrameView(frame))
   const rootExpressionComponents = rootEvaluatedExpressions.map(
     ee => <ExpressionComponent evaluatedExpression={ee} key={ee.id} />
   )

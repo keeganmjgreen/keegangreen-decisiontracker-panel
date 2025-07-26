@@ -73,7 +73,38 @@
           "scenarioId": "no_data_points"
         }
       ],
-      "title": "Decision Tracker Panel (when no data points)",
+      "title": "Decision Tracker Panel (panel data empty)",
+      "type": "keegangreen-decisiontracker-panel"
+    },
+    {
+      "datasource": {
+        "type": "grafana-testdata-datasource",
+        "uid": "trlxrdZVk"
+      },
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 8
+      },
+      "id": 3,
+      "options": {},
+      "targets": [
+        {
+          "datasource": {
+            "type": "grafana-testdata-datasource",
+            "uid": "db84e60d-b92a-4089-82cb-34842fb1754b"
+          },
+          "refId": "A",
+          "scenarioId": "raw_frame",
+          "rawFrameContent": "[\n  {\n    \"columns\": [],\n    \"rows\": []\n  }\n]"
+        }
+      ],
+      "title": "Decision Tracker Panel (fields missing in panel data)",
       "type": "keegangreen-decisiontracker-panel"
     }
   ],
