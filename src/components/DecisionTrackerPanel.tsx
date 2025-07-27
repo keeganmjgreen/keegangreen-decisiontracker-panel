@@ -1,4 +1,4 @@
-import { DataFrameView, PanelProps } from '@grafana/data'
+import { DataFrame, DataFrameView, PanelProps } from '@grafana/data'
 import { UUID } from 'crypto'
 import React, { useState } from 'react'
 import './styles.css'
@@ -85,11 +85,11 @@ export const GetRootEvaluatedExpressions = (view: DataFrameView) => {
   )
 }
 
-export const DecisionTrackerPanel: React.FC<PanelProps> = ({ data }) => {
-  if (data.series.length === 0) {
+export const decisionTrackerPanel = (series: DataFrame[]) => {
+  if (series.length === 0) {
     return <div>No data</div>
   }
-  const frame = data.series[0]
+  const frame = series[0]
   const fields = frame.fields.map(f => f.name)
   const req_fields = ['id', 'parent_id', 'name', 'value', 'operator']
   const missing_fields = req_fields.filter(f => !fields.includes(f))
@@ -101,4 +101,8 @@ export const DecisionTrackerPanel: React.FC<PanelProps> = ({ data }) => {
     ee => <ExpressionComponent evaluatedExpression={ee} key={ee.id} />
   )
   return <div className='expressions-grid'>{rootExpressionComponents}</div>
+}
+
+export const DecisionTrackerPanel: React.FC<PanelProps> = ({ data }) => {
+  return decisionTrackerPanel(data.series)
 }

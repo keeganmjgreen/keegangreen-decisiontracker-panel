@@ -1,7 +1,6 @@
 import { DataFrameView, toDataFrame } from '@grafana/data'
 import { fireEvent, render, screen } from '@testing-library/react'
-import React from 'react'
-import { DecisionTrackerPanel, EvaluatedExpression, GetRootEvaluatedExpressions } from './DecisionTrackerPanel'
+import { decisionTrackerPanel, EvaluatedExpression, GetRootEvaluatedExpressions } from './DecisionTrackerPanel'
 
 const frame = toDataFrame(
   {
@@ -119,13 +118,11 @@ describe(
   'DecisionTrackerPanel',
   () => {
     it('should render nested evaluated expressions', () => {
-      const data = { series: [frame] }
-      render(<DecisionTrackerPanel data={data} />)
+      render(decisionTrackerPanel([frame]))
       expect(screen.getByText('x := true')).toBeInTheDocument()
     })
     it('should enable expanding/collapsing of evaluated expressions via buttons', () => {
-      const data = { series: [frame] }
-      render(<DecisionTrackerPanel data={data} />)
+      render(decisionTrackerPanel([frame]))
       fireEvent.click(screen.getByTestId('51909b4d-7469-4244-bd09-10377e243495 button'))
       expect(screen.getByText('because')).toBeInTheDocument()
       expect(screen.getByText('a := true')).toBeInTheDocument()
@@ -133,13 +130,11 @@ describe(
       expect(screen.getByText('b := true')).toBeInTheDocument()
     })
     it('should display "No data" in case panel data is empty', () => {
-      const data = { series: [] }
-      render(<DecisionTrackerPanel data={data} />)
+      render(decisionTrackerPanel([]))
       expect(screen.getByText('No data')).toBeInTheDocument()
     })
     it('should list any fields missing in panel data', () => {
-      const data = { series: [toDataFrame([])] }
-      render(<DecisionTrackerPanel data={data} />)
+      render(decisionTrackerPanel([toDataFrame([])]))
       expect(
         screen.getByText('Missing required field(s): id, parent_id, name, value, operator')
       ).toBeInTheDocument()
