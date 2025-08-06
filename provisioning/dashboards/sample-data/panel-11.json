@@ -23,13 +23,18 @@
         "text": "operator",
         "type": "string",
         "nullable": true
+      },
+      {
+        "text": "timestamp",
+        "type": "string",
+        "nullable": true
       }
     ],
     "rows": [
-      ["be218b8c-bc7c-4ed2-ae8c-e59df990385e", null                                  , "a" , 1.5, "times"  ],
-      ["cd9875c9-3a96-487b-a6b2-662dea8d4833", "be218b8c-bc7c-4ed2-ae8c-e59df990385e", "b" , 3  , null     ],
-      ["3e195ed9-e410-4c32-bc18-ebffa0953e7d", "be218b8c-bc7c-4ed2-ae8c-e59df990385e", null, 0.5, "inverse"],
-      ["564b7d39-8dc1-42af-8655-1d4e4e3f56e8", "3e195ed9-e410-4c32-bc18-ebffa0953e7d", "c" , 2  , null     ]
+      ["be218b8c-bc7c-4ed2-ae8c-e59df990385e", null                                  , "a" , 1.5, "times"  , "2025-01-01 00:00+00:00"],
+      ["cd9875c9-3a96-487b-a6b2-662dea8d4833", "be218b8c-bc7c-4ed2-ae8c-e59df990385e", "b" , 3  , null     , null                    ],
+      ["3e195ed9-e410-4c32-bc18-ebffa0953e7d", "be218b8c-bc7c-4ed2-ae8c-e59df990385e", null, 0.5, "inverse", null                    ],
+      ["564b7d39-8dc1-42af-8655-1d4e4e3f56e8", "3e195ed9-e410-4c32-bc18-ebffa0953e7d", "c" , 2  , null     , null                    ]
     ]
   }
 ]

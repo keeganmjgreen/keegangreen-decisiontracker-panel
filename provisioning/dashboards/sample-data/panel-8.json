@@ -23,11 +23,16 @@
         "text": "operator",
         "type": "string",
         "nullable": true
+      },
+      {
+        "text": "timestamp",
+        "type": "string",
+        "nullable": true
       }
     ],
     "rows": [
-      ["5bd0c93d-f164-484e-b45a-fd2b33f072e2", null                                  ,"a", 0.5, "inverse"],
-      ["07c69e52-9345-44f7-967f-255a7b014995", "5bd0c93d-f164-484e-b45a-fd2b33f072e2","b", 2  , null     ]
+      ["5bd0c93d-f164-484e-b45a-fd2b33f072e2", null                                  , "a", 0.5, "inverse", "2025-01-01 00:00+00:00"],
+      ["07c69e52-9345-44f7-967f-255a7b014995", "5bd0c93d-f164-484e-b45a-fd2b33f072e2", "b", 2  , null     , null                    ]
     ]
   }
 ]

@@ -55,6 +55,16 @@ const frame = toDataFrame(
           null
         ]
       },
+      {
+        name: 'timestamp',
+        values: [
+          '2025-01-01 00:00+00:00',
+          null,
+          null,
+          null,
+          '2025-01-01 00:00+00:00'
+        ]
+      }
     ]
   }
 )
@@ -70,11 +80,13 @@ describe(
             'x',
             true,
             'and',
+            '2025-01-01 00:00+00:00',
             [
               new EvaluatedExpression(
                 'cc7e5523-9d7e-4df5-bf63-6ee81127feac',
                 'a',
                 true,
+                null,
                 null,
                 []
               ),
@@ -83,11 +95,13 @@ describe(
                 'b',
                 true,
                 'not',
+                null,
                 [
                   new EvaluatedExpression(
                     '52383124-b10a-4e5a-8f97-c9e7c28c7854',
                     'c',
                     false,
+                    null,
                     null,
                     []
                   ),
@@ -100,6 +114,7 @@ describe(
             'y',
             4.2,
             null,
+            '2025-01-01 00:00+00:00',
             []
           )
         ]
@@ -136,7 +151,9 @@ describe(
     it('should list any fields missing in panel data', () => {
       render(decisionTrackerPanel([toDataFrame([])]))
       expect(
-        screen.getByText('Missing required field(s): id, parent_id, name, value, operator')
+        screen.getByText(
+          'Missing required field(s): id, parent_id, name, value, operator, timestamp'
+        )
       ).toBeInTheDocument()
     })
     it('should render a named negative expression in two levels where the second is ["-(name := value)"]', () => {
@@ -175,6 +192,13 @@ describe(
               name: 'operator',
               values: [
                 'negative',
+                null
+              ]
+            },
+            {
+              name: 'timestamp',
+              values: [
+                null,
                 null
               ]
             }
@@ -230,6 +254,15 @@ describe(
               values: [
                 'plus',
                 'negative',
+                null,
+                null
+              ]
+            },
+            {
+              name: 'timestamp',
+              values: [
+                null,
+                null,
                 null,
                 null
               ]
@@ -291,6 +324,15 @@ describe(
                 null,
                 null
               ]
+            },
+            {
+              name: 'timestamp',
+              values: [
+                null,
+                null,
+                null,
+                null
+              ]
             }
           ]
         }
@@ -349,6 +391,15 @@ describe(
                 'negative',
                 null
               ]
+            },
+            {
+              name: 'timestamp',
+              values: [
+                null,
+                null,
+                null,
+                null
+              ]
             }
           ]
         }
@@ -395,6 +446,13 @@ describe(
               name: 'operator',
               values: [
                 'inverse',
+                null
+              ]
+            },
+            {
+              name: 'timestamp',
+              values: [
+                null,
                 null
               ]
             }
@@ -452,6 +510,15 @@ describe(
               values: [
                 'times',
                 'inverse',
+                null,
+                null
+              ]
+            },
+            {
+              name: 'timestamp',
+              values: [
+                null,
+                null,
                 null,
                 null
               ]
@@ -515,6 +582,15 @@ describe(
                 'inverse',
                 null
               ]
+            },
+            {
+              name: 'timestamp',
+              values: [
+                null,
+                null,
+                null,
+                null
+              ]
             }
           ]
         }
@@ -573,6 +649,15 @@ describe(
                 'times',
                 null,
                 'inverse',
+                null
+              ]
+            },
+            {
+              name: 'timestamp',
+              values: [
+                null,
+                null,
+                null,
                 null
               ]
             }

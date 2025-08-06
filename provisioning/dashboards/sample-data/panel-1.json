@@ -23,6 +23,11 @@
                 "text": "operator",
                 "type": "string",
                 "nullable": true
+            },
+            {
+                "text": "timestamp",
+                "type": "string",
+                "nullable": true
             }
         ],
         "rows": [
@@ -31,13 +36,15 @@
                 null,
                 "x",
                 true,
-                "and"
+                "and",
+                "2025-01-01 00:00+00:00"
             ],
             [
                 "cc7e5523-9d7e-4df5-bf63-6ee81127feac",
                 "51909b4d-7469-4244-bd09-10377e243495",
                 "a",
                 true,
+                null,
                 null
             ],
             [
@@ -45,13 +52,15 @@
                 "51909b4d-7469-4244-bd09-10377e243495",
                 "b",
                 true,
-                "not"
+                "not",
+                null
             ],
             [
                 "52383124-b10a-4e5a-8f97-c9e7c28c7854",
                 "2d123c81-646b-4919-928d-bc55f517b623",
                 "c",
                 false,
+                null,
                 null
             ],
             [
@@ -59,7 +68,9 @@
                 null,
                 "y",
                 4.2,
-                null
+                null,
+                null,
+                "2025-01-01 00:00+00:00"
             ]
         ]
     }

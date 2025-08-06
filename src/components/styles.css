@@ -1,6 +1,6 @@
 .expressions-grid {
     display: grid;
-    grid-template-columns: max-content max-content;
+    grid-template-columns: max-content auto;
     column-gap: 10px;
 }
 
@@ -20,12 +20,21 @@
 }
 
 .expression {
+    display: grid;
+    grid-template-columns: max-content auto;
+    align-items: center;
     font-family: monospace;
 }
 
 .because {
     font-size: small;
     opacity: 50%;
+}
+
+.metadata {
+    font-size: small;
+    opacity: 50%;
+    text-align: right;
 }
 
 .operator {
