@@ -1,0 +1,35 @@
+[
+  {
+    "columns": [
+      {
+        "text": "id",
+        "type": "uuid"
+      },
+      {
+        "text": "parent_id",
+        "type": "uuid",
+        "nullable": true
+      },
+      {
+        "text": "name",
+        "type": "string",
+        "nullable": true
+      },
+      {
+        "text": "value",
+        "type": "json"
+      },
+      {
+        "text": "operator",
+        "type": "string",
+        "nullable": true
+      }
+    ],
+    "rows": [
+      ["99be468e-10e2-4021-bafa-76b5c087b8f1", null                                  , "a" , 2 , "plus"    ],
+      ["42a753e7-8b1e-42f4-9f49-806c5b95f9ae", "99be468e-10e2-4021-bafa-76b5c087b8f1", "b" , 3 , null      ],
+      ["137b1ef7-5350-4e30-a372-a8bc97f75ec0", "99be468e-10e2-4021-bafa-76b5c087b8f1", null, -1, "negative"],
+      ["b9c5b3b5-84ae-4c37-a7d1-a2c3b6ea61b0", "137b1ef7-5350-4e30-a372-a8bc97f75ec0", "c" , 1 , null      ]
+    ]
+  }
+]

@@ -4,19 +4,68 @@ import React, { useState } from 'react'
 import './styles.css'
 
 export class EvaluatedExpression {
-  id: UUID
+  id: UUID | null
   name: string | null
   value: any
   operator: string | null
   children: EvaluatedExpression[]
 
-  constructor(id: UUID, name: string | null, value: any, operator: string | null, children: EvaluatedExpression[]) {
+  constructor(id: UUID | null, name: string | null, value: any, operator: string | null, children: EvaluatedExpression[]) {
     this.id = id
     this.name = name
     this.value = value
     this.operator = operator
     this.children = children
   }
+
+  withName(name: string | null) {
+    let copy = new EvaluatedExpression(this.id, this.name, this.value, this.operator, this.children)
+    copy.name = name
+    return copy
+  }
+
+  label() {
+    if (this.name === null) {
+      return `${this.value}`
+    } else {
+      return `${this.name} := ${this.value}`
+    }
+  }
+}
+
+const ONE = new EvaluatedExpression(null, null, 1, null, [])
+
+class Rows {
+  divs: React.JSX.Element[]
+
+  constructor() {
+    this.divs = []
+  }
+
+  appendLeftColumnDiv() {
+    this.divs.push(<div key={this.divs.length} className='left-column'>|</div>)
+  }
+
+  AppendBecauseDiv() {
+    this.appendLeftColumnDiv()
+    this.divs.push(<div key={this.divs.length} className='because'>because</div>)
+  }
+
+  AppendOperatorDiv(operator: string) {
+    this.appendLeftColumnDiv()
+    this.divs.push(<div key={this.divs.length} className='operator'>{operator}</div>)
+  }
+
+  AppendOperandDivs(operand: EvaluatedExpression) {
+    this.divs.push(<ExpressionComponent key={this.divs.length} evaluatedExpression={operand} />)
+  }
+}
+
+function getExactlyOne<Type>(array: Type[]) {
+  if (array.length !== 1) {
+    throw Error('The array must contain exactly one element.')
+  }
+  return array[0]
 }
 
 interface ExpressionComponentProps { evaluatedExpression: EvaluatedExpression }
@@ -24,23 +73,62 @@ interface ExpressionComponentProps { evaluatedExpression: EvaluatedExpression }
 const ExpressionComponent: React.FC<ExpressionComponentProps> = (props): React.JSX.Element => {
   const [childrenVisible, setChildrenVisible] = useState(false)
 
-  let rows = []
-  if (childrenVisible) {
-    const children = props.evaluatedExpression.children
-    if (children.length > 0) {
-      rows.push(<div key={rows.length} className='left-column'>|</div>)
-      rows.push(<div key={rows.length} className='because'>because</div>)
-    }
-    for (let i = 0; i < children.length; i++) {
-      const child = children[i]
-      rows.push(<ExpressionComponent key={rows.length} evaluatedExpression={child} />)
-      if (i < children.length - 1) {
-        rows.push(<div key={rows.length} className='left-column'>|</div>)
-        rows.push(<div key={rows.length} className='operator'>{props.evaluatedExpression.operator}</div>)
+  const operator = props.evaluatedExpression.operator
+
+  let label = props.evaluatedExpression.label()
+  let children = props.evaluatedExpression.children
+  if (operator === 'negative' || operator === 'inverse') {
+    if (props.evaluatedExpression.name !== null) {
+      label = props.evaluatedExpression.label()
+      children = [props.evaluatedExpression.withName(null)]
+    } else {
+      label = getExactlyOne(children).label()
+      if (operator === 'negative') {
+        label = `-(${label})`
+        children = getExactlyOne(children).children
+      } else {
+        children = props.evaluatedExpression.children
       }
     }
   }
-  const expandCollapseButtonDisabled = props.evaluatedExpression.children.length === 0
+
+  let rows = new Rows()
+  if (childrenVisible && children.length > 0) {
+    rows.AppendBecauseDiv()
+    let child = children[0]
+    if (child.operator === 'inverse') {
+      rows.AppendOperandDivs(ONE)
+      rows.AppendOperatorDiv('divided by')
+      rows.AppendOperandDivs(getExactlyOne(child.children))
+    } else {
+      rows.AppendOperandDivs(child)
+    }
+    for (let i = 1; i < children.length; i++) {
+      child = children[i]
+      if (operator === 'plus') {
+        if (child.operator === 'negative') {
+          rows.AppendOperatorDiv('minus')
+          child = getExactlyOne(child.children)
+        } else {
+          rows.AppendOperatorDiv(operator as string)
+        }
+        if (child.operator === 'inverse') {
+          rows.AppendOperandDivs(ONE)
+          rows.AppendOperatorDiv('divided by')
+          child = getExactlyOne(child.children)
+        }
+      } else if (operator === 'times' && child.operator === 'inverse') {
+        rows.AppendOperatorDiv('divided by')
+        child = getExactlyOne(child.children)
+      } else {
+        rows.AppendOperatorDiv(operator as string)
+      }
+      rows.AppendOperandDivs(child)
+    }
+  }
+
+  const expandCollapseButtonDisabled = children.length === 0
+
   return (
     <>
       <button
@@ -59,10 +147,10 @@ const ExpressionComponent: React.FC<ExpressionComponentProps> = (props): React.J
         data-testid={`${props.evaluatedExpression.id} button`}
       >●</button>
       <div className='expression'>
-        {`${props.evaluatedExpression.name} := ${props.evaluatedExpression.value}`}
+        {label}
       </div>
       <div></div>
-      <div className='expressions-grid'>{rows}</div>
+      <div className='expressions-grid'>{rows.divs}</div>
     </>
   )
 }
