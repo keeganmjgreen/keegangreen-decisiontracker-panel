@@ -87,8 +87,7 @@ describe(
                 'a',
                 true,
                 null,
-                null,
-                []
+                null
               ),
               new EvaluatedExpression(
                 '2d123c81-646b-4919-928d-bc55f517b623',
@@ -114,8 +113,7 @@ describe(
             'y',
             4.2,
             null,
-            '2025-01-01 00:00+00:00',
-            []
+            '2025-01-01 00:00+00:00'
           )
         ]
       )

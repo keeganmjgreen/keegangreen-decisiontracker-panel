@@ -17,7 +17,7 @@ export class EvaluatedExpression {
     value: any,
     operator: string | null,
     timestamp: string | null,
-    children: EvaluatedExpression[]
+    children: EvaluatedExpression[] = []
   ) {
     this.id = id
     this.name = name
@@ -45,7 +45,7 @@ export class EvaluatedExpression {
   }
 }
 
-const ONE = new EvaluatedExpression(null, null, 1, null, null, [])
+const ONE = new EvaluatedExpression(null, null, 1, null, null)
 
 class Rows {
   divs: React.JSX.Element[]
