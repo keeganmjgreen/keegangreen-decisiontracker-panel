@@ -199,9 +199,13 @@ export const decisionTrackerPanel = (series: DataFrame[]) => {
   }
   const rootEvaluatedExpressions = GetRootEvaluatedExpressions(new DataFrameView(frame))
   const rootExpressionComponents = rootEvaluatedExpressions.map(
-    ee => <ExpressionComponent evaluatedExpression={ee} key={ee.id} />
+    ee => (
+      <div key={ee.id} className='root-expression-grid'>
+        <ExpressionComponent evaluatedExpression={ee} />
+      </div>
+    )
   )
-  return <div className='expressions-grid'>{rootExpressionComponents}</div>
+  return <>{rootExpressionComponents}</>
 }
 
 export const DecisionTrackerPanel: React.FC<PanelProps> = ({ data }) => {

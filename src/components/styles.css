@@ -4,6 +4,15 @@
     column-gap: 10px;
 }
 
+.root-expression-grid {
+    display: grid;
+    grid-template-columns: max-content auto;
+    column-gap: 10px;
+    margin-top: 5px;
+    border-top: 1px solid rgba(127,127,127,0.5);
+    padding-top: 5px;
+}
+
 .left-column {
     display: flex;
     justify-content: center;
