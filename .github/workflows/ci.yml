@@ -98,18 +98,17 @@ jobs:
           echo "plugin-id=${GRAFANA_PLUGIN_ID}" >> $GITHUB_OUTPUT
           echo "plugin-version=${GRAFANA_PLUGIN_VERSION}" >> $GITHUB_OUTPUT
           echo "archive=${GRAFANA_PLUGIN_ARTIFACT}" >> $GITHUB_OUTPUT
-          echo "archive-checksum=${GRAFANA_PLUGIN_ARTIFACT_CHECKSUM}" >> $GITHUB_OUTPUT
+          echo "archive-sha1sum=${GRAFANA_PLUGIN_ARTIFACT_CHECKSUM}" >> $GITHUB_OUTPUT
 
       - name: Package plugin
         id: package-plugin
         run: |
           mv dist ${PLUGIN_ID}
           zip ${ARCHIVE} ${PLUGIN_ID} -r
-          md5sum ${ARCHIVE} > ${ARCHIVE_CHECKSUM}
-          echo "checksum=$(cat ./${ARCHIVE_CHECKSUM} | cut -d' ' -f1)" >> $GITHUB_OUTPUT
+          sha1sum ${ARCHIVE} > ${ARCHIVE_CHECKSUM}
         env:
           ARCHIVE: ${{ steps.metadata.outputs.archive }}
-          ARCHIVE_CHECKSUM: ${{ steps.metadata.outputs.archive-checksum }}
+          ARCHIVE_CHECKSUM: ${{ steps.metadata.outputs.archive-sha1sum }}
           PLUGIN_ID: ${{ steps.metadata.outputs.plugin-id }}
 
       - name: Check plugin.json
@@ -144,8 +143,8 @@ jobs:
       - name: Upload artifact checksum
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ steps.metadata.outputs.archive-checksum }}
-          path: ${{ steps.metadata.outputs.archive-checksum }}
+          name: ${{ steps.metadata.outputs.archive-sha1sum }}
+          path: ${{ steps.metadata.outputs.archive-sha1sum }}
 
   resolve-versions:
     name: Resolve e2e images
