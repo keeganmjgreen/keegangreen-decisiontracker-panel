@@ -106,6 +106,8 @@ jobs:
           mv dist ${PLUGIN_ID}
           zip ${ARCHIVE} ${PLUGIN_ID} -r
           sha1sum ${ARCHIVE} > ${ARCHIVE_CHECKSUM}
+          echo "archive=${ARCHIVE}" >> $GITHUB_OUTPUT
+          echo "archive-sha1sum=${ARCHIVE_CHECKSUM}" >> $GITHUB_OUTPUT
         env:
           ARCHIVE: ${{ steps.metadata.outputs.archive }}
           ARCHIVE_CHECKSUM: ${{ steps.metadata.outputs.archive-sha1sum }}
