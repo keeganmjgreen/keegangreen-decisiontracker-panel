@@ -15,8 +15,26 @@
       "small": "img/logo.svg",
       "large": "img/logo.svg"
     },
-    "links": [],
-    "screenshots": [],
+    "links": [
+      {
+        "name": "documentation",
+        "url": "https://github.com/keeganmjgreen/keegangreen-decisiontracker-panel/blob/master/src/README.md"
+      },
+      {
+        "name": "repository",
+        "url": "https://github.com/keeganmjgreen/keegangreen-decisiontracker-panel"
+      }
+    ],
+    "screenshots": [
+      {
+        "name": "Screenshot",
+        "path": "img/screenshot.png"
+      },
+      {
+        "name": "Screen recording",
+        "path": "img/screencast.gif"
+      }
+    ],
     "version": "%VERSION%",
     "updated": "%TODAY%"
   },
