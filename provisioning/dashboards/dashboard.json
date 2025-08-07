@@ -318,6 +318,33 @@
       ],
       "title": "Decision Tracker Panel 11",
       "type": "keegangreen-decisiontracker-panel"
+    },
+    {
+      "datasource": {
+        "type": "grafana-testdata-datasource",
+        "uid": "trlxrdZVk"
+      },
+      "gridPos": {
+        "h": 14,
+        "w": 9,
+        "x": 0,
+        "y": 48
+      },
+      "id": 12,
+      "options": {},
+      "targets": [
+        {
+          "datasource": {
+            "type": "grafana-testdata-datasource",
+            "uid": "db84e60d-b92a-4089-82cb-34842fb1754b"
+          },
+          "refId": "A",
+          "scenarioId": "raw_frame",
+          "rawFrameContent": "[\n  {\n    \"columns\": [\n      {\n        \"text\": \"id\",\n        \"type\": \"uuid\"\n      },\n      {\n        \"text\": \"parent_id\",\n        \"type\": \"uuid\",\n        \"nullable\": true\n      },\n      {\n        \"text\": \"name\",\n        \"type\": \"string\",\n        \"nullable\": true\n      },\n      {\n        \"text\": \"value\",\n        \"type\": \"json\"\n      },\n      {\n        \"text\": \"operator\",\n        \"type\": \"string\",\n        \"nullable\": true\n      },\n      {\n        \"text\": \"timestamp\",\n        \"type\": \"string\",\n        \"nullable\": true\n      }\n    ],\n    \"rows\": [\n      [\"22e62b1a-09a0-4dba-af5b-59bde1d12e33\", null                                  , \"output\"       , true , \"and\"                        , \"2025-01-01 00:00+00:00\"],\n      [\"400ca2a5-1076-4e2d-ace0-a44ff51b51ff\", \"22e62b1a-09a0-4dba-af5b-59bde1d12e33\", null           , true , \"or\"                         , null                    ],\n      [\"e771a4ee-5dfd-4404-8e8a-6ec116ecd648\", \"400ca2a5-1076-4e2d-ace0-a44ff51b51ff\", \"my_comparison\", true , \"is greater than or equal to\", null                    ],\n      [\"93b3398a-89a3-4187-91f5-4177fd55ff8c\", \"e771a4ee-5dfd-4404-8e8a-6ec116ecd648\", null           , 9    , \"times\"                      , null                    ],\n      [\"7835c554-39f9-4089-99b6-7768154fc6ad\", \"93b3398a-89a3-4187-91f5-4177fd55ff8c\", \"my_sum\"       , 3    , \"plus\"                       , null                    ],\n      [\"e660104d-6e4e-4b5b-a75d-f06966699289\", \"7835c554-39f9-4089-99b6-7768154fc6ad\", \"a\"            , 1    , null                         , null                    ],\n      [\"ae1628aa-abc2-443a-a420-ac98b9fe5456\", \"7835c554-39f9-4089-99b6-7768154fc6ad\", \"b\"            , 2    , null                         , null                    ],\n      [\"15dbc677-f86c-4538-b3f1-3db3644516e0\", \"93b3398a-89a3-4187-91f5-4177fd55ff8c\", \"c\"            , 3    , null                         , null                    ],\n      [\"da26a44b-27ce-4347-a533-6e2300b70f24\", \"e771a4ee-5dfd-4404-8e8a-6ec116ecd648\", null           , 3.8  , \"plus\"                       , null                    ],\n      [\"3ff90605-0cfb-45d3-bea3-547c12023992\", \"da26a44b-27ce-4347-a533-6e2300b70f24\", \"d\"            , 4    , null                         , null                    ],\n      [\"8861f456-a30e-41d1-ae8e-3d0386ed250d\", \"da26a44b-27ce-4347-a533-6e2300b70f24\", null           , -0.2 , \"negative\"                   , null                    ],\n      [\"84766f0d-c5c5-4003-a80d-06029fa739f0\", \"8861f456-a30e-41d1-ae8e-3d0386ed250d\", null           , 0.2  , \"inverse\"                    , null                    ],\n      [\"239d8b28-e852-42ae-b21d-baf58fbebef8\", \"84766f0d-c5c5-4003-a80d-06029fa739f0\", \"f\"            , 5    , null                         , null                    ],\n      [\"76d1f6c3-878a-4c02-b5ce-00cf63fe2fc1\", \"400ca2a5-1076-4e2d-ace0-a44ff51b51ff\", \"g\"            , false, null                         , null                    ],\n      [\"c42505af-3ecc-4d3b-b0d1-f7d92e5d6195\", \"22e62b1a-09a0-4dba-af5b-59bde1d12e33\", \"h\"            , true , null                         , null                    ]\n    ]\n  }\n]\n"
+        }
+      ],
+      "title": "DecisionTracker Panel",
+      "type": "keegangreen-decisiontracker-panel"
     }
   ],
   "preload": false,
