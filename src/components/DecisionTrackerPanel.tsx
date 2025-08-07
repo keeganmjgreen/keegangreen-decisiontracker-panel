@@ -7,8 +7,8 @@ export class EvaluatedExpression {
   id: UUID | null
   name: string | null
   value: any
-  timestamp: string | null
   operator: string | null
+  metadata: Map<string, any>
   children: EvaluatedExpression[]
 
   constructor(
@@ -16,23 +16,23 @@ export class EvaluatedExpression {
     name: string | null,
     value: any,
     operator: string | null,
-    timestamp: string | null,
+    metadata: Map<string, any> = new Map(),
     children: EvaluatedExpression[] = []
   ) {
     this.id = id
     this.name = name
     this.value = value
     this.operator = operator
-    this.timestamp = timestamp
+    this.metadata = metadata
     this.children = children
   }
 
-  with(name: string | null, timestamp: string | null) {
+  with(name: string | null, metadata: Map<string, any>) {
     let copy = new EvaluatedExpression(
-      this.id, this.name, this.value, this.operator, this.timestamp, this.children
+      this.id, this.name, this.value, this.operator, this.metadata, this.children
     )
     copy.name = name
-    copy.timestamp = timestamp
+    copy.metadata = metadata
     return copy
   }
 
@@ -45,7 +45,8 @@ export class EvaluatedExpression {
   }
 }
 
-const ONE = new EvaluatedExpression(null, null, 1, null, null)
+const REQUIRED_FIELDS = ['id', 'parent_id', 'name', 'value', 'operator']
+const ONE = new EvaluatedExpression(null, null, 1, null)
 
 class Rows {
   divs: React.JSX.Element[]
@@ -92,7 +93,7 @@ const ExpressionComponent: React.FC<ExpressionComponentProps> = (props): React.J
   if (operator === 'negative' || operator === 'inverse') {
     if (props.evaluatedExpression.name !== null) {
       label = props.evaluatedExpression.label()
-      children = [props.evaluatedExpression.with(null, null)]
+      children = [props.evaluatedExpression.with(null, new Map())]
     } else {
       label = getExactlyOne(children).label()
       if (operator === 'negative') {
@@ -141,6 +142,10 @@ const ExpressionComponent: React.FC<ExpressionComponentProps> = (props): React.J
 
   const expandCollapseButtonDisabled = children.length === 0
 
+  const metadata = Array.from(props.evaluatedExpression.metadata.values()).map(
+    (item) => item !== null ? item.toString() : ''
+  ).join(" ")
+
   return (
     <>
       <button
@@ -160,7 +165,7 @@ const ExpressionComponent: React.FC<ExpressionComponentProps> = (props): React.J
       >●</button>
       <div className='expression'>
         <div>{label}</div>
-        <div className='metadata'>{props.evaluatedExpression.timestamp}</div>
+        <div className='metadata'>{metadata}</div>
       </div>
       <div></div>
       <div className='expressions-grid'>{rows.divs}</div>
@@ -171,7 +176,13 @@ const ExpressionComponent: React.FC<ExpressionComponentProps> = (props): React.J
 export const GetRootEvaluatedExpressions = (view: DataFrameView) => {
   const rows = view.toArray()
   const evaluatedExpressions = rows.map(
-    row => new EvaluatedExpression(row.id, row.name, row.value, row.operator, row.timestamp, [])
+    row => new EvaluatedExpression(
+      row.id,
+      row.name,
+      row.value,
+      row.operator,
+      new Map<string, any>(Object.entries(row).filter(([key, _]) => !REQUIRED_FIELDS.includes(key)))
+    )
   )
   const evaluatedExpressionsMap = new Map(evaluatedExpressions.map(ee => [ee.id, ee]))
   rows.forEach(
@@ -192,8 +203,7 @@ export const decisionTrackerPanel = (series: DataFrame[]) => {
   }
   const frame = series[0]
   const fields = frame.fields.map(f => f.name)
-  const req_fields = ['id', 'parent_id', 'name', 'value', 'operator', 'timestamp']
-  const missing_fields = req_fields.filter(f => !fields.includes(f))
+  const missing_fields = REQUIRED_FIELDS.filter(f => !fields.includes(f))
   if (missing_fields.length > 0) {
     return <div>Missing required field(s): {missing_fields.join(', ')}</div>
   }
