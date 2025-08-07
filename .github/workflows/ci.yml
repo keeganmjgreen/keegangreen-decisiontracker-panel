@@ -130,6 +130,18 @@ jobs:
           env_vars: OS,PYTHON
           fail_ci_if_error: false
 
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ steps.metadata.outputs.archive }}
+          path: ${{ steps.metadata.outputs.archive }}
+
+      - name: Upload artifact checksum
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ steps.metadata.outputs.archive-checksum }}
+          path: ${{ steps.metadata.outputs.archive-checksum }}
+
   resolve-versions:
     name: Resolve e2e images
     runs-on: ubuntu-latest
