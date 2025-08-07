@@ -5,7 +5,7 @@
     "build": "webpack -c ./.config/webpack/webpack.config.ts --env production",
     "dev": "webpack -w -c ./.config/webpack/webpack.config.ts --env development",
     "test": "jest --watch",
-    "test:ci": "jest --maxWorkers 4",
+    "test:ci": "jest --maxWorkers 4 --coverage",
     "typecheck": "tsc --noEmit",
     "lint": "eslint --cache --ignore-path ./.gitignore --ext .js,.jsx,.ts,.tsx .",
     "lint:fix": "npm run lint -- --fix && prettier --write --list-different .",
