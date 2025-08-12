@@ -9,7 +9,7 @@ The DecisionTracker panel is a Grafana plugin for interactively viewing evaluate
 
 Here's a screenshot and screen recording of the panel with sample data:
 
- <div style="display: grid; grid-template-columns: 53.3% 46.7%;">
+ <div style="display: grid; grid-template-columns: 50% 50%;">
   <img src="https://raw.githubusercontent.com/keeganmjgreen/keegangreen-decisiontracker-panel/refs/heads/master/src/img/screenshot.png" style="padding-right:5px"></img>
   <img src="https://raw.githubusercontent.com/keeganmjgreen/keegangreen-decisiontracker-panel/refs/heads/master/src/img/screencast.gif" style="padding-left:5px"></img>
 </div>
