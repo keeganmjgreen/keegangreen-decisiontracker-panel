@@ -148,7 +148,7 @@ const ExpressionComponent: React.FC<ExpressionComponentProps> = (
   );
 };
 
-export const decisionTrackerPanel = (series: DataFrame[]) => {
+export function decisionTrackerPanel(series: DataFrame[]) {
   if (series.length === 0) {
     return <div>No data</div>;
   }
