@@ -3,7 +3,7 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import {
   decisionTrackerPanel,
   EvaluatedExpression,
-  GetRootEvaluatedExpressions,
+  getRootEvaluatedExpressions,
 } from './DecisionTrackerPanel';
 
 const frame = toDataFrame({
@@ -53,9 +53,9 @@ const frame = toDataFrame({
   ],
 });
 
-describe('GetRootEvaluatedExpressions', () => {
+describe('getRootEvaluatedExpressions', () => {
   it('should convert flat list of evaluated expression records to nested evaluated expressions', () => {
-    expect(GetRootEvaluatedExpressions(new DataFrameView(frame))).toEqual([
+    expect(getRootEvaluatedExpressions(new DataFrameView(frame))).toEqual([
       new EvaluatedExpression(
         '51909b4d-7469-4244-bd09-10377e243495',
         'x',
@@ -99,7 +99,7 @@ describe('GetRootEvaluatedExpressions', () => {
   });
   it('should work even with empty input data', () => {
     const frame = toDataFrame([]);
-    expect(GetRootEvaluatedExpressions(new DataFrameView(frame))).toEqual([]);
+    expect(getRootEvaluatedExpressions(new DataFrameView(frame))).toEqual([]);
   });
 });
 
