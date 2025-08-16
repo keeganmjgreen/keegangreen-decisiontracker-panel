@@ -14,9 +14,9 @@ class Rows {
   divs: React.JSX.Element[];
   styles: any;
 
-  constructor() {
+  constructor(styles: any) {
     this.divs = [];
-    this.styles = useStyles2(getStyles);
+    this.styles = styles;
   }
 
   appendLeftColumnDiv() {
@@ -84,7 +84,7 @@ const ExpressionComponent: React.FC<ExpressionComponentProps> = (
     }
   }
 
-  let rows = new Rows();
+  let rows = new Rows(styles);
   if (childrenVisible && children.length > 0) {
     rows.appendBecauseDiv();
     let child = children[0];
@@ -152,13 +152,19 @@ const ExpressionComponent: React.FC<ExpressionComponentProps> = (
   );
 };
 
-export function decisionTrackerPanel(series: DataFrame[]) {
+interface DecisionTrackerProps {
+  series: DataFrame[];
+}
+
+export const DecisionTracker: React.FC<DecisionTrackerProps> = (
+  props
+): React.JSX.Element => {
   const styles = useStyles2(getStyles);
 
-  if (series.length === 0) {
+  if (props.series.length === 0) {
     return <div>No data</div>;
   }
-  const frame = series[0];
+  const frame = props.series[0];
   const fields = frame.fields.map((f) => f.name);
   const missing_fields = REQUIRED_FIELDS.filter((f) => !fields.includes(f));
   if (missing_fields.length > 0) {
@@ -176,7 +182,7 @@ export function decisionTrackerPanel(series: DataFrame[]) {
 }
 
 export const DecisionTrackerPanel: React.FC<PanelProps> = ({ data }) => {
-  return decisionTrackerPanel(data.series);
+  return <DecisionTracker series={data.series} />;
 };
 
 function getStyles() {
