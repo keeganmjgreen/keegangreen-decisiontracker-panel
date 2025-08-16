@@ -27,7 +27,7 @@ class Rows {
     );
   }
 
-  AppendBecauseDiv() {
+  appendBecauseDiv() {
     this.appendLeftColumnDiv();
     this.divs.push(
       <div key={this.divs.length} className={this.styles.because}>
@@ -36,7 +36,7 @@ class Rows {
     );
   }
 
-  AppendOperatorDiv(operator: string) {
+  appendOperatorDiv(operator: string) {
     this.appendLeftColumnDiv();
     this.divs.push(
       <div key={this.divs.length} className={this.styles.operator}>
@@ -45,7 +45,7 @@ class Rows {
     );
   }
 
-  AppendOperandDivs(operand: EvaluatedExpression) {
+  appendOperandDivs(operand: EvaluatedExpression) {
     this.divs.push(
       <ExpressionComponent
         key={this.divs.length}
@@ -86,36 +86,36 @@ const ExpressionComponent: React.FC<ExpressionComponentProps> = (
 
   let rows = new Rows();
   if (childrenVisible && children.length > 0) {
-    rows.AppendBecauseDiv();
+    rows.appendBecauseDiv();
     let child = children[0];
     if (child.operator === 'inverse') {
-      rows.AppendOperandDivs(ONE);
-      rows.AppendOperatorDiv('divided by');
-      rows.AppendOperandDivs(getExactlyOne(child.children));
+      rows.appendOperandDivs(ONE);
+      rows.appendOperatorDiv('divided by');
+      rows.appendOperandDivs(getExactlyOne(child.children));
     } else {
-      rows.AppendOperandDivs(child);
+      rows.appendOperandDivs(child);
     }
     for (let i = 1; i < children.length; i++) {
       child = children[i];
       if (operator === 'plus') {
         if (child.operator === 'negative') {
-          rows.AppendOperatorDiv('minus');
+          rows.appendOperatorDiv('minus');
           child = getExactlyOne(child.children);
         } else {
-          rows.AppendOperatorDiv(operator as string);
+          rows.appendOperatorDiv(operator as string);
         }
         if (child.operator === 'inverse') {
-          rows.AppendOperandDivs(ONE);
-          rows.AppendOperatorDiv('divided by');
+          rows.appendOperandDivs(ONE);
+          rows.appendOperatorDiv('divided by');
           child = getExactlyOne(child.children);
         }
       } else if (operator === 'times' && child.operator === 'inverse') {
-        rows.AppendOperatorDiv('divided by');
+        rows.appendOperatorDiv('divided by');
         child = getExactlyOne(child.children);
       } else {
-        rows.AppendOperatorDiv(operator as string);
+        rows.appendOperatorDiv(operator as string);
       }
-      rows.AppendOperandDivs(child);
+      rows.appendOperandDivs(child);
     }
   }
 
