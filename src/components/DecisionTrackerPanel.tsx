@@ -1,4 +1,4 @@
-import { DataFrame, DataFrameView, PanelProps } from '@grafana/data';
+import { DataFrame, DataFrameView, GrafanaTheme2, PanelProps } from '@grafana/data';
 import React, { useState } from 'react';
 import {
   EvaluatedExpression,
@@ -140,7 +140,7 @@ const ExpressionComponent: React.FC<ExpressionComponentProps> = (
         }}
         data-testid={`${props.evaluatedExpression.id} button`}
       >
-        ●
+        <div className={styles.dot} />
       </button>
       <div className={styles.expression}>
         <div>{label}</div>
@@ -179,13 +179,13 @@ export const DecisionTracker: React.FC<DecisionTrackerProps> = (
     </div>
   ));
   return <>{rootExpressionComponents}</>;
-}
+};
 
 export const DecisionTrackerPanel: React.FC<PanelProps> = ({ data }) => {
   return <DecisionTracker series={data.series} />;
 };
 
-function getStyles() {
+function getStyles(theme: GrafanaTheme2) {
   return {
     expressionsGrid: css({
       display: 'grid',
@@ -210,8 +210,15 @@ function getStyles() {
       borderRadius: '50%',
       width: '25px',
       height: '25px',
-      fontWeight: 'bold',
-      fontSize: '50%',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+    }),
+    dot: css({
+      borderRadius: '50%',
+      height: '5px',
+      width: '5px',
+      backgroundColor: theme.colors.text.primary,
     }),
     expression: css({
       display: 'grid',
