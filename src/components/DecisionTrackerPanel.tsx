@@ -199,7 +199,7 @@ const ExpressionComponent: React.FC<ExpressionComponentProps> = (
   );
 };
 
-export const GetRootEvaluatedExpressions = (view: DataFrameView) => {
+export const getRootEvaluatedExpressions = (view: DataFrameView) => {
   const rows = view.toArray();
   const evaluatedExpressions = rows.map(
     (row) =>
@@ -238,7 +238,7 @@ export const decisionTrackerPanel = (series: DataFrame[]) => {
   if (missing_fields.length > 0) {
     return <div>Missing required field(s): {missing_fields.join(', ')}</div>;
   }
-  const rootEvaluatedExpressions = GetRootEvaluatedExpressions(
+  const rootEvaluatedExpressions = getRootEvaluatedExpressions(
     new DataFrameView(frame)
   );
   const rootExpressionComponents = rootEvaluatedExpressions.map((ee) => (
