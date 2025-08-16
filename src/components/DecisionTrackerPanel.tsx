@@ -7,6 +7,7 @@ import {
   ONE,
   REQUIRED_FIELDS,
 } from './EvaluatedExpression';
+import { getExactlyOne } from './utils';
 
 class Rows {
   divs: React.JSX.Element[];
@@ -49,13 +50,6 @@ class Rows {
       />
     );
   }
-}
-
-function getExactlyOne<Type>(array: Type[]) {
-  if (array.length !== 1) {
-    throw Error('The array must contain exactly one element.');
-  }
-  return array[0];
 }
 
 interface ExpressionComponentProps {
