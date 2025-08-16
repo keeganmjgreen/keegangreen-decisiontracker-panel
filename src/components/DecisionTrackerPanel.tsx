@@ -1,6 +1,5 @@
 import { DataFrame, DataFrameView, PanelProps } from '@grafana/data';
 import React, { useState } from 'react';
-import './styles.css';
 import {
   EvaluatedExpression,
   getRootEvaluatedExpressions,
@@ -8,17 +7,21 @@ import {
   REQUIRED_FIELDS,
 } from './EvaluatedExpression';
 import { getExactlyOne } from './utils';
+import { css } from '@emotion/css';
+import { useStyles2 } from '@grafana/ui';
 
 class Rows {
   divs: React.JSX.Element[];
+  styles: any;
 
   constructor() {
     this.divs = [];
+    this.styles = useStyles2(getStyles);
   }
 
   appendLeftColumnDiv() {
     this.divs.push(
-      <div key={this.divs.length} className="left-column">
+      <div key={this.divs.length} className={this.styles.leftColumn}>
         |
       </div>
     );
@@ -27,7 +30,7 @@ class Rows {
   AppendBecauseDiv() {
     this.appendLeftColumnDiv();
     this.divs.push(
-      <div key={this.divs.length} className="because">
+      <div key={this.divs.length} className={this.styles.because}>
         because
       </div>
     );
@@ -36,7 +39,7 @@ class Rows {
   AppendOperatorDiv(operator: string) {
     this.appendLeftColumnDiv();
     this.divs.push(
-      <div key={this.divs.length} className="operator">
+      <div key={this.divs.length} className={this.styles.operator}>
         {operator}
       </div>
     );
@@ -60,6 +63,7 @@ const ExpressionComponent: React.FC<ExpressionComponentProps> = (
   props
 ): React.JSX.Element => {
   const [childrenVisible, setChildrenVisible] = useState(false);
+  const styles = useStyles2(getStyles);
 
   const operator = props.evaluatedExpression.operator;
 
@@ -124,7 +128,7 @@ const ExpressionComponent: React.FC<ExpressionComponentProps> = (
   return (
     <>
       <button
-        className="expand-collapse-button"
+        className={styles.expandCollapseButton}
         onClick={() => setChildrenVisible(!childrenVisible)}
         disabled={expandCollapseButtonDisabled}
         style={{
@@ -138,17 +142,19 @@ const ExpressionComponent: React.FC<ExpressionComponentProps> = (
       >
         ●
       </button>
-      <div className="expression">
+      <div className={styles.expression}>
         <div>{label}</div>
-        <div className="metadata">{metadata}</div>
+        <div className={styles.metadata}>{metadata}</div>
       </div>
       <div></div>
-      <div className="expressions-grid">{rows.divs}</div>
+      <div className={styles.expressionsGrid}>{rows.divs}</div>
     </>
   );
 };
 
 export function decisionTrackerPanel(series: DataFrame[]) {
+  const styles = useStyles2(getStyles);
+
   if (series.length === 0) {
     return <div>No data</div>;
   }
@@ -162,13 +168,63 @@ export function decisionTrackerPanel(series: DataFrame[]) {
     new DataFrameView(frame).toArray()
   );
   const rootExpressionComponents = rootEvaluatedExpressions.map((ee) => (
-    <div key={ee.id} className="root-expression-grid">
+    <div key={ee.id} className={styles.rootExpressionGrid}>
       <ExpressionComponent evaluatedExpression={ee} />
     </div>
   ));
   return <>{rootExpressionComponents}</>;
-};
+}
 
 export const DecisionTrackerPanel: React.FC<PanelProps> = ({ data }) => {
   return decisionTrackerPanel(data.series);
 };
+
+function getStyles() {
+  return {
+    expressionsGrid: css({
+      display: 'grid',
+      gridTemplateColumns: 'max-content auto',
+      columnGap: '10px',
+    }),
+    rootExpressionGrid: css({
+      display: 'grid',
+      gridTemplateColumns: 'max-content auto',
+      columnGap: '10px',
+      marginTop: '5px',
+      borderTop: '1px solid rgba(127, 127, 127, 0.5)',
+      paddingTop: '5px',
+    }),
+    leftColumn: css({
+      display: 'flex',
+      justifyContent: 'center',
+      opacity: '0.5',
+    }),
+    expandCollapseButton: css({
+      border: 'none',
+      borderRadius: '50%',
+      width: '25px',
+      height: '25px',
+      fontWeight: 'bold',
+      fontSize: '50%',
+    }),
+    expression: css({
+      display: 'grid',
+      gridTemplateColumns: 'max-content auto',
+      alignItems: 'center',
+      fontFamily: 'monospace',
+    }),
+    because: css({
+      fontSize: 'small',
+      opacity: '50%',
+    }),
+    metadata: css({
+      fontSize: 'small',
+      opacity: '50%',
+      textAlign: 'right',
+    }),
+    operator: css({
+      fontSize: 'small',
+      opacity: '50%',
+    }),
+  };
+}
