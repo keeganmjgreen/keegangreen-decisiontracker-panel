@@ -1,6 +1,7 @@
 import { toDataFrame } from '@grafana/data';
 import { fireEvent, render, screen } from '@testing-library/react';
-import { decisionTrackerPanel } from './DecisionTrackerPanel';
+import { DecisionTracker } from './DecisionTrackerPanel';
+import React from 'react';
 
 const frame = toDataFrame({
   fields: [
@@ -51,11 +52,11 @@ const frame = toDataFrame({
 
 describe('DecisionTrackerPanel', () => {
   it('should render nested evaluated expressions', () => {
-    render(decisionTrackerPanel([frame]));
+    render(<DecisionTracker series={[frame]} />);
     expect(screen.getByText('x := true')).toBeInTheDocument();
   });
   it('should enable expanding/collapsing of evaluated expressions via buttons', () => {
-    render(decisionTrackerPanel([frame]));
+    render(<DecisionTracker series={[frame]} />);
     fireEvent.click(
       screen.getByTestId('51909b4d-7469-4244-bd09-10377e243495 button')
     );
@@ -65,11 +66,11 @@ describe('DecisionTrackerPanel', () => {
     expect(screen.getByText('b := true')).toBeInTheDocument();
   });
   it('should display "No data" in case panel data is empty', () => {
-    render(decisionTrackerPanel([]));
+    render(<DecisionTracker series={[]} />);
     expect(screen.getByText('No data')).toBeInTheDocument();
   });
   it('should list any fields missing in panel data', () => {
-    render(decisionTrackerPanel([toDataFrame([])]));
+    render(<DecisionTracker series={[toDataFrame([])]} />);
     expect(
       screen.getByText(
         'Missing required field(s): id, parent_id, name, value, operator'
@@ -78,7 +79,7 @@ describe('DecisionTrackerPanel', () => {
   });
   it('should render a named negative expression in two levels where the second is ["-(name := value)"]', () => {
     render(
-      decisionTrackerPanel([
+      <DecisionTracker series={[
         toDataFrame({
           fields: [
             {
@@ -110,8 +111,8 @@ describe('DecisionTrackerPanel', () => {
             },
           ],
         }),
-      ])
-    );
+      ]}
+    />);
     expect(screen.getByText('a := -1')).toBeInTheDocument();
     fireEvent.click(
       screen.getByTestId('3ab1cccc-53c3-47b0-af3a-500976d1afac button')
@@ -120,7 +121,7 @@ describe('DecisionTrackerPanel', () => {
   });
   it('should render an unnamed negative expression in the beginning of a sum expression as ["-(operand.name := value)", ...]', () => {
     render(
-      decisionTrackerPanel([
+      <DecisionTracker series={[
         toDataFrame({
           fields: [
             {
@@ -159,8 +160,8 @@ describe('DecisionTrackerPanel', () => {
             },
           ],
         }),
-      ])
-    );
+      ]}
+    />);
     expect(screen.getByText('a := 2')).toBeInTheDocument();
     fireEvent.click(
       screen.getByTestId('ea4095f5-9b60-49d4-9d8d-8df04b56b368 button')
@@ -171,7 +172,7 @@ describe('DecisionTrackerPanel', () => {
   });
   it('should render an unnamed negative expression in the beginning of a product expression as ["-(operand.name := value)", ...]', () => {
     render(
-      decisionTrackerPanel([
+      <DecisionTracker series={[
         toDataFrame({
           fields: [
             {
@@ -210,8 +211,8 @@ describe('DecisionTrackerPanel', () => {
             },
           ],
         }),
-      ])
-    );
+      ]}
+    />);
     expect(screen.getByText('a := -3')).toBeInTheDocument();
     fireEvent.click(
       screen.getByTestId('f46aa217-ef63-4033-a965-24009e7dd2cd button')
@@ -222,7 +223,7 @@ describe('DecisionTrackerPanel', () => {
   });
   it('should render an unnamed negative expression in the middle or end of a sum or product expression as [..., "minus", "name := value", ...]', () => {
     render(
-      decisionTrackerPanel([
+      <DecisionTracker series={[
         toDataFrame({
           fields: [
             {
@@ -261,8 +262,8 @@ describe('DecisionTrackerPanel', () => {
             },
           ],
         }),
-      ])
-    );
+      ]}
+    />);
     expect(screen.getByText('a := 2')).toBeInTheDocument();
     fireEvent.click(
       screen.getByTestId('99be468e-10e2-4021-bafa-76b5c087b8f1 button')
@@ -273,7 +274,7 @@ describe('DecisionTrackerPanel', () => {
   });
   it('should render a named inverse expression in two levels where the second is ["1", "divided by", "name := value"]', () => {
     render(
-      decisionTrackerPanel([
+      <DecisionTracker series={[
         toDataFrame({
           fields: [
             {
@@ -305,8 +306,8 @@ describe('DecisionTrackerPanel', () => {
             },
           ],
         }),
-      ])
-    );
+      ]}
+    />);
     expect(screen.getByText('a := 0.5')).toBeInTheDocument();
     fireEvent.click(
       screen.getByTestId('5bd0c93d-f164-484e-b45a-fd2b33f072e2 button')
@@ -317,7 +318,7 @@ describe('DecisionTrackerPanel', () => {
   });
   it('should render an unnamed inverse expression in the beginning of a sum or product expression as ["1", "divided by", "name := value", ...]', () => {
     render(
-      decisionTrackerPanel([
+      <DecisionTracker series={[
         toDataFrame({
           fields: [
             {
@@ -356,8 +357,8 @@ describe('DecisionTrackerPanel', () => {
             },
           ],
         }),
-      ])
-    );
+      ]}
+    />);
     expect(screen.getByText('a := 1.5')).toBeInTheDocument();
     fireEvent.click(
       screen.getByTestId('8cbc55dd-6240-4fa4-8689-d29bcb364f2a button')
@@ -370,7 +371,7 @@ describe('DecisionTrackerPanel', () => {
   });
   it('should render an unnamed inverse expression in the middle or end of a sum expression as [..., "1", "divided by", "name := value", ...]', () => {
     render(
-      decisionTrackerPanel([
+      <DecisionTracker series={[
         toDataFrame({
           fields: [
             {
@@ -409,8 +410,8 @@ describe('DecisionTrackerPanel', () => {
             },
           ],
         }),
-      ])
-    );
+      ]}
+    />);
     expect(screen.getByText('a := 3.5')).toBeInTheDocument();
     fireEvent.click(
       screen.getByTestId('e2f0de75-e212-460b-8fc3-1825bb371690 button')
@@ -423,7 +424,7 @@ describe('DecisionTrackerPanel', () => {
   });
   it('should render an unnamed inverse expression in the middle or end of a product expression as [..., "divided by", "name := value", ...]', () => {
     render(
-      decisionTrackerPanel([
+      <DecisionTracker series={[
         toDataFrame({
           fields: [
             {
@@ -462,8 +463,8 @@ describe('DecisionTrackerPanel', () => {
             },
           ],
         }),
-      ])
-    );
+      ]}
+    />);
     expect(screen.getByText('a := 1.5')).toBeInTheDocument();
     fireEvent.click(
       screen.getByTestId('be218b8c-bc7c-4ed2-ae8c-e59df990385e button')
