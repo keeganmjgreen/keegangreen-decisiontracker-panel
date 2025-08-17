@@ -147,7 +147,7 @@ const ExpressionComponent: React.FC<ExpressionComponentProps> = (
             ? 'rgba(127,127,127,0.5)'
             : 'rgba(127,127,127,0.2)',
         }}
-        data-testid={`${props.evaluatedExpression.id} button`}
+        data-testid={`${label} button`}
       >
         <div className={styles.dot} />
       </button>
