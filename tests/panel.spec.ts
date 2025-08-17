@@ -20,9 +20,7 @@ test('should enable expanding/collapsing of evaluated expressions via buttons', 
     fileName: 'dashboard.json',
   });
   const panelEditPage = await gotoPanelEditPage({ dashboard, id: '1' });
-  panelEditPage.panel.locator
-    .getByTestId('51909b4d-7469-4244-bd09-10377e243495 button')
-    .click();
+  panelEditPage.panel.locator.getByTestId('x := true button').click();
   await expect(panelEditPage.panel.locator).toContainText('because');
   await expect(panelEditPage.panel.locator).toContainText('a := true');
   await expect(panelEditPage.panel.locator).toContainText('and');
