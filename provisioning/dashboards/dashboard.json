@@ -46,7 +46,7 @@
           "rawFrameContent": "[\n  {\n    \"columns\": [\n      {\n        \"text\": \"id\",\n        \"type\": \"uuid\"\n      },\n      {\n        \"text\": \"parent_id\",\n        \"type\": \"uuid\",\n        \"nullable\": true\n      },\n      {\n        \"text\": \"name\",\n        \"type\": \"string\",\n        \"nullable\": true\n      },\n      {\n        \"text\": \"value\",\n        \"type\": \"json\"\n      },\n      {\n        \"text\": \"operator\",\n        \"type\": \"string\",\n        \"nullable\": true\n      },\n      {\n        \"text\": \"timestamp\",\n        \"type\": \"string\",\n        \"nullable\": true\n      }\n    ],\n    \"rows\": [\n      [\"51909b4d-7469-4244-bd09-10377e243495\", null                                  , \"x\", true , \"and\", \"2025-01-01 00:00+00:00\"],\n      [\"cc7e5523-9d7e-4df5-bf63-6ee81127feac\", \"51909b4d-7469-4244-bd09-10377e243495\", \"a\", true , null , null                    ],\n      [\"2d123c81-646b-4919-928d-bc55f517b623\", \"51909b4d-7469-4244-bd09-10377e243495\", \"b\", true , \"not\", null                    ],\n      [\"52383124-b10a-4e5a-8f97-c9e7c28c7854\", \"2d123c81-646b-4919-928d-bc55f517b623\", \"c\", false, null , null                    ],\n      [\"f27ad21d-989f-4f76-bb15-c64a3b6f400a\", null                                  , \"y\", 4.2  , null , \"2025-01-01 00:00+00:00\"]\n    ]\n  }\n]"
         }
       ],
-      "title": "Decision Tracker Panel",
+      "title": "DecisionTracker panel",
       "type": "keegangreen-decisiontracker-panel"
     },
     {
@@ -73,7 +73,7 @@
           "scenarioId": "no_data_points"
         }
       ],
-      "title": "Decision Tracker Panel (panel data empty)",
+      "title": "DecisionTracker panel (panel data empty)",
       "type": "keegangreen-decisiontracker-panel"
     },
     {
@@ -100,7 +100,7 @@
           "rawFrameContent": "[\n  {\n    \"columns\": [],\n    \"rows\": []\n  }\n]"
         }
       ],
-      "title": "Decision Tracker Panel (fields missing in panel data)",
+      "title": "DecisionTracker panel (fields missing in panel data)",
       "type": "keegangreen-decisiontracker-panel"
     },
     {
@@ -127,7 +127,7 @@
           "rawFrameContent": "[\n  {\n    \"columns\": [\n      {\n        \"text\": \"id\",\n        \"type\": \"uuid\"\n      },\n      {\n        \"text\": \"parent_id\",\n        \"type\": \"uuid\",\n        \"nullable\": true\n      },\n      {\n        \"text\": \"name\",\n        \"type\": \"string\",\n        \"nullable\": true\n      },\n      {\n        \"text\": \"value\",\n        \"type\": \"json\"\n      },\n      {\n        \"text\": \"operator\",\n        \"type\": \"string\",\n        \"nullable\": true\n      },\n      {\n        \"text\": \"timestamp\",\n        \"type\": \"string\",\n        \"nullable\": true\n      }\n    ],\n    \"rows\": [\n      [\"3ab1cccc-53c3-47b0-af3a-500976d1afac\", null                                  ,\"a\", -1, \"negative\", \"2025-01-01 00:00+00:00\"],\n      [\"53d655c4-ecda-4741-8532-f3ba296be09a\", \"3ab1cccc-53c3-47b0-af3a-500976d1afac\",\"b\", 1 , null      , null                    ]\n    ]\n  }\n]"
         }
       ],
-      "title": "Decision Tracker Panel 4",
+      "title": "DecisionTracker panel 4",
       "type": "keegangreen-decisiontracker-panel"
     },
     {
@@ -154,7 +154,7 @@
           "rawFrameContent": "[\n  {\n    \"columns\": [\n      {\n        \"text\": \"id\",\n        \"type\": \"uuid\"\n      },\n      {\n        \"text\": \"parent_id\",\n        \"type\": \"uuid\",\n        \"nullable\": true\n      },\n      {\n        \"text\": \"name\",\n        \"type\": \"string\",\n        \"nullable\": true\n      },\n      {\n        \"text\": \"value\",\n        \"type\": \"json\"\n      },\n      {\n        \"text\": \"operator\",\n        \"type\": \"string\",\n        \"nullable\": true\n      },\n      {\n        \"text\": \"timestamp\",\n        \"type\": \"string\",\n        \"nullable\": true\n      }\n    ],\n    \"rows\": [\n      [\"ea4095f5-9b60-49d4-9d8d-8df04b56b368\", null                                  , \"a\" , 2 , \"plus\"    , \"2025-01-01 00:00+00:00\"],\n      [\"3f55fc30-621f-4315-ad3b-60d5948fb48a\", \"ea4095f5-9b60-49d4-9d8d-8df04b56b368\", null, -1, \"negative\", null                    ],\n      [\"a2a1fd97-f866-4685-bd1b-908e4cc48d52\", \"3f55fc30-621f-4315-ad3b-60d5948fb48a\", \"b\" , 1 , null      , null                    ],\n      [\"18dcbf65-bb81-48a2-a882-23a67a007884\", \"ea4095f5-9b60-49d4-9d8d-8df04b56b368\", \"c\" , 3 , null      , null                    ]\n    ]\n  }\n]"
         }
       ],
-      "title": "Decision Tracker Panel 5",
+      "title": "DecisionTracker panel 5",
       "type": "keegangreen-decisiontracker-panel"
     },
     {
@@ -181,7 +181,7 @@
           "rawFrameContent": "[\n  {\n    \"columns\": [\n      {\n        \"text\": \"id\",\n        \"type\": \"uuid\"\n      },\n      {\n        \"text\": \"parent_id\",\n        \"type\": \"uuid\",\n        \"nullable\": true\n      },\n      {\n        \"text\": \"name\",\n        \"type\": \"string\",\n        \"nullable\": true\n      },\n      {\n        \"text\": \"value\",\n        \"type\": \"json\"\n      },\n      {\n        \"text\": \"operator\",\n        \"type\": \"string\",\n        \"nullable\": true\n      },\n      {\n        \"text\": \"timestamp\",\n        \"type\": \"string\",\n        \"nullable\": true\n      }\n    ],\n    \"rows\": [\n      [\"f46aa217-ef63-4033-a965-24009e7dd2cd\", null                                  , \"a\" , -3, \"times\"   , \"2025-01-01 00:00+00:00\"],\n      [\"50a6e3c1-932a-4998-a0fa-5c501177c464\", \"f46aa217-ef63-4033-a965-24009e7dd2cd\", null, -1, \"negative\", null                    ],\n      [\"c06c7eea-5f17-4b1d-9f3b-3bd5b269873f\", \"50a6e3c1-932a-4998-a0fa-5c501177c464\", \"b\" , 1 , null      , null                    ],\n      [\"b3c8ea41-01f9-4d59-bbf0-f37f571ed1db\", \"f46aa217-ef63-4033-a965-24009e7dd2cd\", \"c\" , 3 , null      , null                    ]\n    ]\n  }\n]"
         }
       ],
-      "title": "Decision Tracker Panel 6",
+      "title": "DecisionTracker panel 6",
       "type": "keegangreen-decisiontracker-panel"
     },
     {
@@ -208,7 +208,7 @@
           "rawFrameContent": "[\n  {\n    \"columns\": [\n      {\n        \"text\": \"id\",\n        \"type\": \"uuid\"\n      },\n      {\n        \"text\": \"parent_id\",\n        \"type\": \"uuid\",\n        \"nullable\": true\n      },\n      {\n        \"text\": \"name\",\n        \"type\": \"string\",\n        \"nullable\": true\n      },\n      {\n        \"text\": \"value\",\n        \"type\": \"json\"\n      },\n      {\n        \"text\": \"operator\",\n        \"type\": \"string\",\n        \"nullable\": true\n      },\n      {\n        \"text\": \"timestamp\",\n        \"type\": \"string\",\n        \"nullable\": true\n      }\n    ],\n    \"rows\": [\n      [\"99be468e-10e2-4021-bafa-76b5c087b8f1\", null                                  , \"a\" , 2 , \"plus\"    , \"2025-01-01 00:00+00:00\"],\n      [\"42a753e7-8b1e-42f4-9f49-806c5b95f9ae\", \"99be468e-10e2-4021-bafa-76b5c087b8f1\", \"b\" , 3 , null      , null                    ],\n      [\"137b1ef7-5350-4e30-a372-a8bc97f75ec0\", \"99be468e-10e2-4021-bafa-76b5c087b8f1\", null, -1, \"negative\", null                    ],\n      [\"b9c5b3b5-84ae-4c37-a7d1-a2c3b6ea61b0\", \"137b1ef7-5350-4e30-a372-a8bc97f75ec0\", \"c\" , 1 , null      , null                    ]\n    ]\n  }\n]"
         }
       ],
-      "title": "Decision Tracker Panel 7",
+      "title": "DecisionTracker panel 7",
       "type": "keegangreen-decisiontracker-panel"
     },
     {
@@ -235,7 +235,7 @@
           "rawFrameContent": "[\n  {\n    \"columns\": [\n      {\n        \"text\": \"id\",\n        \"type\": \"uuid\"\n      },\n      {\n        \"text\": \"parent_id\",\n        \"type\": \"uuid\",\n        \"nullable\": true\n      },\n      {\n        \"text\": \"name\",\n        \"type\": \"string\",\n        \"nullable\": true\n      },\n      {\n        \"text\": \"value\",\n        \"type\": \"json\"\n      },\n      {\n        \"text\": \"operator\",\n        \"type\": \"string\",\n        \"nullable\": true\n      },\n      {\n        \"text\": \"timestamp\",\n        \"type\": \"string\",\n        \"nullable\": true\n      }\n    ],\n    \"rows\": [\n      [\"5bd0c93d-f164-484e-b45a-fd2b33f072e2\", null                                  , \"a\", 0.5, \"inverse\", \"2025-01-01 00:00+00:00\"],\n      [\"07c69e52-9345-44f7-967f-255a7b014995\", \"5bd0c93d-f164-484e-b45a-fd2b33f072e2\", \"b\", 2  , null     , null                    ]\n    ]\n  }\n]"
         }
       ],
-      "title": "Decision Tracker Panel 8",
+      "title": "DecisionTracker panel 8",
       "type": "keegangreen-decisiontracker-panel"
     },
     {
@@ -262,7 +262,7 @@
           "rawFrameContent": "[\n  {\n    \"columns\": [\n      {\n        \"text\": \"id\",\n        \"type\": \"uuid\"\n      },\n      {\n        \"text\": \"parent_id\",\n        \"type\": \"uuid\",\n        \"nullable\": true\n      },\n      {\n        \"text\": \"name\",\n        \"type\": \"string\",\n        \"nullable\": true\n      },\n      {\n        \"text\": \"value\",\n        \"type\": \"json\"\n      },\n      {\n        \"text\": \"operator\",\n        \"type\": \"string\",\n        \"nullable\": true\n      },\n      {\n        \"text\": \"timestamp\",\n        \"type\": \"string\",\n        \"nullable\": true\n      }\n    ],\n    \"rows\": [\n      [\"8cbc55dd-6240-4fa4-8689-d29bcb364f2a\", null                                  , \"a\" , 1.5, \"times\"  , \"2025-01-01 00:00+00:00\"],\n      [\"1fab7186-c1de-4d58-905b-727d4c10cdfb\", \"8cbc55dd-6240-4fa4-8689-d29bcb364f2a\", null, 0.5, \"inverse\", null                    ],\n      [\"3574315e-4053-4ea6-a43f-9b8bf1bd1558\", \"1fab7186-c1de-4d58-905b-727d4c10cdfb\", \"b\" , 2  , null     , null                    ],\n      [\"2e2efa71-f7ae-447c-a7d5-7e8a3201df7c\", \"8cbc55dd-6240-4fa4-8689-d29bcb364f2a\", \"c\" , 3  , null     , null                    ]\n    ]\n  }\n]"
         }
       ],
-      "title": "Decision Tracker Panel 9",
+      "title": "DecisionTracker panel 9",
       "type": "keegangreen-decisiontracker-panel"
     },
     {
@@ -289,7 +289,7 @@
           "rawFrameContent": "[\n  {\n    \"columns\": [\n      {\n        \"text\": \"id\",\n        \"type\": \"uuid\"\n      },\n      {\n        \"text\": \"parent_id\",\n        \"type\": \"uuid\",\n        \"nullable\": true\n      },\n      {\n        \"text\": \"name\",\n        \"type\": \"string\",\n        \"nullable\": true\n      },\n      {\n        \"text\": \"value\",\n        \"type\": \"json\"\n      },\n      {\n        \"text\": \"operator\",\n        \"type\": \"string\",\n        \"nullable\": true\n      },\n      {\n        \"text\": \"timestamp\",\n        \"type\": \"string\",\n        \"nullable\": true\n      }\n    ],\n    \"rows\": [\n      [\"e2f0de75-e212-460b-8fc3-1825bb371690\", null                                  , \"a\" , 3.5, \"plus\"   , \"2025-01-01 00:00+00:00\"],\n      [\"7767fd04-b110-401d-966e-feb40d7a0f8d\", \"e2f0de75-e212-460b-8fc3-1825bb371690\", \"b\" , 3  , null     , null                    ],\n      [\"235290b7-4feb-445d-a789-5583551c6aab\", \"e2f0de75-e212-460b-8fc3-1825bb371690\", null, 0.5, \"inverse\", null                    ],\n      [\"d2adc5d9-6b20-4bb0-b7ea-a1b152bc6709\", \"235290b7-4feb-445d-a789-5583551c6aab\", \"c\" , 2  , null     , null                    ]\n    ]\n  }\n]"
         }
       ],
-      "title": "Decision Tracker Panel 10",
+      "title": "DecisionTracker panel 10",
       "type": "keegangreen-decisiontracker-panel"
     },
     {
@@ -316,7 +316,7 @@
           "rawFrameContent": "[\n  {\n    \"columns\": [\n      {\n        \"text\": \"id\",\n        \"type\": \"uuid\"\n      },\n      {\n        \"text\": \"parent_id\",\n        \"type\": \"uuid\",\n        \"nullable\": true\n      },\n      {\n        \"text\": \"name\",\n        \"type\": \"string\",\n        \"nullable\": true\n      },\n      {\n        \"text\": \"value\",\n        \"type\": \"json\"\n      },\n      {\n        \"text\": \"operator\",\n        \"type\": \"string\",\n        \"nullable\": true\n      },\n      {\n        \"text\": \"timestamp\",\n        \"type\": \"string\",\n        \"nullable\": true\n      }\n    ],\n    \"rows\": [\n      [\"be218b8c-bc7c-4ed2-ae8c-e59df990385e\", null                                  , \"a\" , 1.5, \"times\"  , \"2025-01-01 00:00+00:00\"],\n      [\"cd9875c9-3a96-487b-a6b2-662dea8d4833\", \"be218b8c-bc7c-4ed2-ae8c-e59df990385e\", \"b\" , 3  , null     , null                    ],\n      [\"3e195ed9-e410-4c32-bc18-ebffa0953e7d\", \"be218b8c-bc7c-4ed2-ae8c-e59df990385e\", null, 0.5, \"inverse\", null                    ],\n      [\"564b7d39-8dc1-42af-8655-1d4e4e3f56e8\", \"3e195ed9-e410-4c32-bc18-ebffa0953e7d\", \"c\" , 2  , null     , null                    ]\n    ]\n  }\n]"
         }
       ],
-      "title": "Decision Tracker Panel 11",
+      "title": "DecisionTracker panel 11",
       "type": "keegangreen-decisiontracker-panel"
     },
     {
@@ -343,7 +343,7 @@
           "rawFrameContent": "[\n  {\n    \"columns\": [\n      {\n        \"text\": \"id\",\n        \"type\": \"uuid\"\n      },\n      {\n        \"text\": \"parent_id\",\n        \"type\": \"uuid\",\n        \"nullable\": true\n      },\n      {\n        \"text\": \"name\",\n        \"type\": \"string\",\n        \"nullable\": true\n      },\n      {\n        \"text\": \"value\",\n        \"type\": \"json\"\n      },\n      {\n        \"text\": \"operator\",\n        \"type\": \"string\",\n        \"nullable\": true\n      },\n      {\n        \"text\": \"timestamp\",\n        \"type\": \"string\",\n        \"nullable\": true\n      }\n    ],\n    \"rows\": [\n      [\"56f49ac6-8b67-49d3-a48a-4c57704f7261\", null                                  , \"a\" , -0.5, \"negative\", \"2025-01-01 00:00+00:00\"],\n      [\"bbe075f8-2d79-44d5-a392-fea38f76c1c0\", \"56f49ac6-8b67-49d3-a48a-4c57704f7261\", null, 0.5 , \"inverse\" , null                    ],\n      [\"add0ba25-3654-47a3-8de5-cad0cb082766\", \"bbe075f8-2d79-44d5-a392-fea38f76c1c0\", \"b\" , 2   , \"plus\"    , null                    ],\n      [\"0442b32f-dfe0-4635-b777-91e0e13cf0c1\", \"add0ba25-3654-47a3-8de5-cad0cb082766\", \"x\" , 1   , null      , null                    ],\n      [\"b14e06f7-7bf0-4b7d-9fcf-7fd224cd3392\", \"add0ba25-3654-47a3-8de5-cad0cb082766\", \"y\" , 1   , null      , null                    ]\n    ]\n  }\n]"
         }
       ],
-      "title": "Decision Tracker Panel 12",
+      "title": "DecisionTracker panel 12",
       "type": "keegangreen-decisiontracker-panel"
     },
     {
@@ -370,7 +370,7 @@
           "rawFrameContent": "[\n  {\n    \"columns\": [\n      {\n        \"text\": \"id\",\n        \"type\": \"uuid\"\n      },\n      {\n        \"text\": \"parent_id\",\n        \"type\": \"uuid\",\n        \"nullable\": true\n      },\n      {\n        \"text\": \"name\",\n        \"type\": \"string\",\n        \"nullable\": true\n      },\n      {\n        \"text\": \"value\",\n        \"type\": \"json\"\n      },\n      {\n        \"text\": \"operator\",\n        \"type\": \"string\",\n        \"nullable\": true\n      },\n      {\n        \"text\": \"timestamp\",\n        \"type\": \"string\",\n        \"nullable\": true\n      }\n    ],\n    \"rows\": [\n      [\"22e62b1a-09a0-4dba-af5b-59bde1d12e33\", null                                  , \"output\"       , true , \"and\"                        , \"2025-01-01 00:00+00:00\"],\n      [\"400ca2a5-1076-4e2d-ace0-a44ff51b51ff\", \"22e62b1a-09a0-4dba-af5b-59bde1d12e33\", null           , true , \"or\"                         , null                    ],\n      [\"e771a4ee-5dfd-4404-8e8a-6ec116ecd648\", \"400ca2a5-1076-4e2d-ace0-a44ff51b51ff\", \"my_comparison\", true , \"is greater than or equal to\", null                    ],\n      [\"93b3398a-89a3-4187-91f5-4177fd55ff8c\", \"e771a4ee-5dfd-4404-8e8a-6ec116ecd648\", null           , 9    , \"times\"                      , null                    ],\n      [\"7835c554-39f9-4089-99b6-7768154fc6ad\", \"93b3398a-89a3-4187-91f5-4177fd55ff8c\", \"my_sum\"       , 3    , \"plus\"                       , null                    ],\n      [\"e660104d-6e4e-4b5b-a75d-f06966699289\", \"7835c554-39f9-4089-99b6-7768154fc6ad\", \"a\"            , 1    , null                         , null                    ],\n      [\"ae1628aa-abc2-443a-a420-ac98b9fe5456\", \"7835c554-39f9-4089-99b6-7768154fc6ad\", \"b\"            , 2    , null                         , null                    ],\n      [\"15dbc677-f86c-4538-b3f1-3db3644516e0\", \"93b3398a-89a3-4187-91f5-4177fd55ff8c\", \"c\"            , 3    , null                         , null                    ],\n      [\"da26a44b-27ce-4347-a533-6e2300b70f24\", \"e771a4ee-5dfd-4404-8e8a-6ec116ecd648\", null           , 3.8  , \"plus\"                       , null                    ],\n      [\"3ff90605-0cfb-45d3-bea3-547c12023992\", \"da26a44b-27ce-4347-a533-6e2300b70f24\", \"d\"            , 4    , null                         , null                    ],\n      [\"8861f456-a30e-41d1-ae8e-3d0386ed250d\", \"da26a44b-27ce-4347-a533-6e2300b70f24\", null           , -0.2 , \"negative\"                   , null                    ],\n      [\"84766f0d-c5c5-4003-a80d-06029fa739f0\", \"8861f456-a30e-41d1-ae8e-3d0386ed250d\", null           , 0.2  , \"inverse\"                    , null                    ],\n      [\"239d8b28-e852-42ae-b21d-baf58fbebef8\", \"84766f0d-c5c5-4003-a80d-06029fa739f0\", \"f\"            , 5    , null                         , null                    ],\n      [\"76d1f6c3-878a-4c02-b5ce-00cf63fe2fc1\", \"400ca2a5-1076-4e2d-ace0-a44ff51b51ff\", \"g\"            , false, null                         , null                    ],\n      [\"c42505af-3ecc-4d3b-b0d1-f7d92e5d6195\", \"22e62b1a-09a0-4dba-af5b-59bde1d12e33\", \"h\"            , true , null                         , null                    ]\n    ]\n  }\n]\n"
         }
       ],
-      "title": "DecisionTracker Panel",
+      "title": "DecisionTracker panel",
       "type": "keegangreen-decisiontracker-panel"
     }
   ],
@@ -387,7 +387,7 @@
   },
   "timepicker": {},
   "timezone": "",
-  "title": "Decision Tracker dashboard",
+  "title": "DecisionTracker dashboard",
   "uid": "a538aeff-5a8a-42a5-901c-938d896fdd6f",
   "version": 1,
   "weekStart": ""
