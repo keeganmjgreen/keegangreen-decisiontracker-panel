@@ -1,4 +1,9 @@
-import { DataFrame, DataFrameView, GrafanaTheme2, PanelProps } from '@grafana/data';
+import {
+  DataFrame,
+  DataFrameView,
+  GrafanaTheme2,
+  PanelProps,
+} from '@grafana/data';
 import React, { useState } from 'react';
 import {
   EvaluatedExpression,
@@ -22,7 +27,7 @@ class Rows {
   appendLeftColumnDiv() {
     this.divs.push(
       <div key={this.divs.length} className={this.styles.leftColumn}>
-        |
+        <div className={this.styles.verticalLine} />
       </div>
     );
   }
@@ -45,11 +50,12 @@ class Rows {
     );
   }
 
-  appendOperandDivs(operand: EvaluatedExpression) {
+  appendOperandDivs(operand: EvaluatedExpression, isLast = false) {
     this.divs.push(
       <ExpressionComponent
         key={this.divs.length}
         evaluatedExpression={operand}
+        indentLine={!isLast}
       />
     );
   }
@@ -57,6 +63,7 @@ class Rows {
 
 interface ExpressionComponentProps {
   evaluatedExpression: EvaluatedExpression;
+  indentLine: boolean;
 }
 
 const ExpressionComponent: React.FC<ExpressionComponentProps> = (
@@ -88,12 +95,13 @@ const ExpressionComponent: React.FC<ExpressionComponentProps> = (
   if (childrenVisible && children.length > 0) {
     rows.appendBecauseDiv();
     let child = children[0];
+    const isOnlyChild = children.length === 1;
     if (child.operator === 'inverse') {
       rows.appendOperandDivs(ONE);
       rows.appendOperatorDiv('divided by');
-      rows.appendOperandDivs(getExactlyOne(child.children));
+      rows.appendOperandDivs(getExactlyOne(child.children), isOnlyChild);
     } else {
-      rows.appendOperandDivs(child);
+      rows.appendOperandDivs(child, isOnlyChild);
     }
     for (let i = 1; i < children.length; i++) {
       child = children[i];
@@ -115,7 +123,8 @@ const ExpressionComponent: React.FC<ExpressionComponentProps> = (
       } else {
         rows.appendOperatorDiv(operator as string);
       }
-      rows.appendOperandDivs(child);
+      const isLastChild = i === children.length - 1;
+      rows.appendOperandDivs(child, isLastChild);
     }
   }
 
@@ -146,7 +155,9 @@ const ExpressionComponent: React.FC<ExpressionComponentProps> = (
         <div>{label}</div>
         <div className={styles.metadata}>{metadata}</div>
       </div>
-      <div></div>
+      <div className={styles.leftColumn}>
+        <div className={props.indentLine ? styles.verticalLine : ''} />
+      </div>
       <div className={styles.expressionsGrid}>{rows.divs}</div>
     </>
   );
@@ -175,7 +186,7 @@ export const DecisionTracker: React.FC<DecisionTrackerProps> = (
   );
   const rootExpressionComponents = rootEvaluatedExpressions.map((ee) => (
     <div key={ee.id} className={styles.rootExpressionGrid}>
-      <ExpressionComponent evaluatedExpression={ee} />
+      <ExpressionComponent evaluatedExpression={ee} indentLine={false} />
     </div>
   ));
   return <>{rootExpressionComponents}</>;
@@ -203,9 +214,13 @@ function getStyles(theme: GrafanaTheme2) {
     leftColumn: css({
       display: 'flex',
       justifyContent: 'center',
-      opacity: '0.5',
+    }),
+    verticalLine: css({
+      borderLeft: '1px solid rgba(127, 127, 127, 0.5)',
+      left: '50%',
     }),
     expandCollapseButton: css({
+      margin: '2px',
       border: 'none',
       borderRadius: '50%',
       width: '25px',
