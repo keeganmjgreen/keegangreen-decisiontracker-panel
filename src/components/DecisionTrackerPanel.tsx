@@ -12,7 +12,7 @@ import {
   REQUIRED_FIELDS,
 } from './EvaluatedExpression';
 import { getExactlyOne } from './utils';
-import { css } from '@emotion/css';
+import { css, cx } from '@emotion/css';
 import { useStyles2 } from '@grafana/ui';
 
 class Rows {
@@ -194,8 +194,20 @@ export const DecisionTracker: React.FC<DecisionTrackerProps> = (
   return <>{rootExpressionComponents}</>;
 };
 
-export const DecisionTrackerPanel: React.FC<PanelProps> = ({ data }) => {
-  return <DecisionTracker series={data.series} />;
+export const DecisionTrackerPanel: React.FC<PanelProps> = ({
+  data,
+  width,
+  height,
+}) => {
+  return (
+    <div
+      className={cx(
+        css({ width: `${width}px`, height: `${height}px`, overflow: 'scroll' })
+      )}
+    >
+      <DecisionTracker series={data.series} />
+    </div>
+  );
 };
 
 function getStyles(theme: GrafanaTheme2) {
