@@ -471,4 +471,62 @@ describe('DecisionTrackerPanel', () => {
     expect(screen.getByText('divided by')).toBeInTheDocument();
     expect(screen.getByText('c := 2')).toBeInTheDocument();
   });
+  it('should render a negative or inverse expression of a non-constant', () => {
+    render(
+      <DecisionTracker
+        series={[
+          toDataFrame({
+            fields: [
+              {
+                name: 'id',
+                values: [
+                  '56f49ac6-8b67-49d3-a48a-4c57704f7261',
+                  'bbe075f8-2d79-44d5-a392-fea38f76c1c0',
+                  'add0ba25-3654-47a3-8de5-cad0cb082766',
+                  '0442b32f-dfe0-4635-b777-91e0e13cf0c1',
+                  'b14e06f7-7bf0-4b7d-9fcf-7fd224cd3392',
+                ],
+              },
+              {
+                name: 'parent_id',
+                values: [
+                  null,
+                  '56f49ac6-8b67-49d3-a48a-4c57704f7261',
+                  'bbe075f8-2d79-44d5-a392-fea38f76c1c0',
+                  'add0ba25-3654-47a3-8de5-cad0cb082766',
+                  'add0ba25-3654-47a3-8de5-cad0cb082766',
+                ],
+              },
+              {
+                name: 'name',
+                values: ['a', null, 'b', 'x', 'y'],
+              },
+              {
+                name: 'value',
+                values: [-0.5, 0.5, 2, 1, 1],
+              },
+              {
+                name: 'operator',
+                values: ['negative', 'inverse', 'plus', null, null],
+              },
+              {
+                name: 'timestamp',
+                values: [null, null, null, null, null],
+              },
+            ],
+          }),
+        ]}
+      />
+    );
+    expect(screen.getByText('a := -0.5')).toBeInTheDocument();
+    fireEvent.click(screen.getByTestId('a := -0.5 button'));
+    expect(screen.getByText('-(0.5)')).toBeInTheDocument();
+    fireEvent.click(screen.getByTestId('-(0.5) button'));
+    expect(screen.getByText('1')).toBeInTheDocument();
+    expect(screen.getByText('divided by')).toBeInTheDocument();
+    expect(screen.getByText('b := 2')).toBeInTheDocument();
+    fireEvent.click(screen.getByTestId('b := 2 button'));
+    expect(screen.getByText('x := 1')).toBeInTheDocument();
+    expect(screen.getByText('y := 1')).toBeInTheDocument();
+  });
 });

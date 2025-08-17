@@ -84,7 +84,9 @@ const ExpressionComponent: React.FC<ExpressionComponentProps> = (
       label = getExactlyOne(children).label();
       if (operator === 'negative') {
         label = `-(${label})`;
-        children = getExactlyOne(children).children;
+        if (getExactlyOne(children).children.length === 0) {
+          children = [];
+        }
       } else {
         children = props.evaluatedExpression.children;
       }
