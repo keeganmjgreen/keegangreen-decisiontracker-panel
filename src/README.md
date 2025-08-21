@@ -36,11 +36,13 @@ The panel ingests evaluated expressions stored in the following data format:
 Such records can be stored in your database by the DecisionTracker Python library and fetched for the dashboard's selected time range using a panel query like the following:
 
 ```sql
-SELECT ee.id, ee.parent_id, ee.name, ee.value, ee.operator, md.timestamp
+SELECT ee.id, eea.parent_id, ee.name, ee.value, ee.operator, eem.timestamp
 FROM decision_tracker.evaluated_expression ee
-LEFT JOIN decision_tracker.evaluated_expression_metadata md
-ON ee.id = md.evaluated_expression_id
-WHERE $__timeFilter(md.timestamp)
+LEFT JOIN decision_tracker.evaluated_expression_association eea -- Many-to-many association table.
+  ON ee.id = eea.child_id
+LEFT JOIN decision_tracker.evaluated_expression_metadata eem
+  ON ee.id = eem.evaluated_expression_id
+WHERE $__timeFilter(eem.timestamp)
 ```
 
 `id`, `parent_id`, `name`, `value`, and `operator` are the only required columns. Any additional columns present in the panel's input data, including the `timestamp` in the above example, will form the "metadata" for each evaluated expression and be displayed on the right side of the panel. Columns like `timestamp` are optional but obviously recommended to allow filtering a large number of database records to display only relevant ones. Depending on your use case, it may be useful to store, query, filter by, and optionally display additional metadata columns, such as a `service_id`. Even if you integrate DecisionTracker with only one of your services at first, having additional metadata column(s) (e.g., `service_id`) helps to be able to onboard additional services and differentiate between their records. And, for example, if your service makes decisions for multiple customers, then a `customer_id` column would be called for.
