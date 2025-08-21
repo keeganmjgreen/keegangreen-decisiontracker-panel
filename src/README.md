@@ -38,7 +38,7 @@ Such records can be stored in your database by the DecisionTracker Python librar
 ```sql
 SELECT ee.id, ee.parent_id, ee.name, ee.value, ee.operator, md.timestamp
 FROM decision_tracker.evaluated_expression ee
-LEFT JOIN decision_tracker.evaluated_expression.metadata md
+LEFT JOIN decision_tracker.evaluated_expression_metadata md
 ON ee.id = md.evaluated_expression_id
 WHERE $__timeFilter(md.timestamp)
 ```
