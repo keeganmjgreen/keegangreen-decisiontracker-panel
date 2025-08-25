@@ -23,7 +23,7 @@ output := true because ((my_comparison := ((my_sum := (a := 1) + (b := 2)) * (c 
 
 The panel ingests evaluated expressions stored in the following data format:
 
-| id (UUID)     | parent_id (UUID NULL) | name (TEXT NULL) | value (JSONB) | operator (VARCHAR(30) NULL)   | timestamp (TIMESTAMPTZ)  |
+| id (UUID)     | parent_id (UUID NULL) | name (TEXT NULL) | value (JSONB) | operator (TEXT NULL)   | timestamp (TIMESTAMPTZ)  |
 | ------------- | --------------------- | ---------------- | ------------- | ----------------------------- | ------------------------ |
 | '22e62b1a...' | NULL                  | 'output'         | TRUE          | 'and'                         | '2025-01-01 00:00+00:00' |
 | '400ca2a5...' | '22e62b1a...'         | NULL             | TRUE          | 'or'                          | NULL                     |
